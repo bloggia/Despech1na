@@ -1,0 +1,30 @@
+{
+  "entities": {
+    "Progress": {
+      "title": "User Progress",
+      "description": "Stores points and completed sub-themes for a user.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "totalPoints": { "type": "number" },
+        "completedSubThemes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "happinessLevel": { "type": "number" },
+        "photos": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "totalPoints", "completedSubThemes", "happinessLevel"]
+    }
+  },
+  "firestore": {
+    "progress/{userId}": {
+      "schema": "Progress",
+      "description": "Progress document for each participant."
+    }
+  }
+}

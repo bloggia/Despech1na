@@ -1,0 +1,6 @@
+{
+  "name": "Despechina",
+  "description": "App para la despedida de soltera de Agustina. Un roadmap de fiesta con juegos, retos y mucha diversión.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": []
+}

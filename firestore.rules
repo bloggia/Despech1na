@@ -1,0 +1,33 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isValidProgress(data) {
+      return data.userId is string &&
+             data.totalPoints is number &&
+             data.happinessLevel is number &&
+             data.completedSubThemes is list &&
+             data.updatedAt == request.time;
+    }
+
+    match /progress/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && isValidProgress(request.resource.data);
+      allow update: if isOwner(userId) && isValidProgress(request.resource.data);
+    }
+  }
+}

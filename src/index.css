@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Bangers&family=Inter:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-retro: "Bangers", cursive;
+  --font-tattoo: "UnifrakturMaguntia", serif;
+
+  --color-brand-pink: #FF007A;
+  --color-brand-red: #FF0000;
+  --color-brand-light-pink: #FFC0CB;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-pink text-white font-sans;
+    background-image: radial-gradient(rgba(255, 0, 0, 0.2) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+}
+
+.retro-title {
+  @apply font-retro uppercase tracking-widest;
+  text-shadow: 3px 3px 0px #FF0000, 6px 6px 0px #000;
+}
+
+.tattoo-font {
+  @apply font-tattoo;
+}
+
+.neo-border {
+  @apply border-4 border-black;
+  box-shadow: 6px 6px 0px #000;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
