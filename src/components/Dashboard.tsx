@@ -97,13 +97,13 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-brand-pink p-4 pb-24 font-sans max-w-md mx-auto">
       {/* Header */}
-      <header className="relative z-10 flex flex-col mb-8 text-black">
-        <h2 className="text-6xl retro-title">Dashboard</h2>
+      <header className="relative z-10 flex flex-col mb-8 text-brand-red">
+        <h2 className="text-5xl font-display leading-none">Dashboard</h2>
         <div className="flex justify-between items-end">
-          <p className="tattoo-font text-2xl ml-1">La Despedida de Agustina</p>
-          <div className="bg-white neo-border p-3 text-center min-w-[100px]">
-             <div className="text-[10px] font-black uppercase italic mb-1">Puntos</div>
-             <div className="text-xl font-black italic">{gameState.totalPoints}</div>
+          <p className="font-script text-3xl">Despedida de Agustina</p>
+          <div className="bg-white neo-border p-3 text-center min-w-[100px] rounded-xl">
+             <div className="text-[10px] font-bold uppercase italic mb-1">Puntos</div>
+             <div className="text-2xl font-display">{gameState.totalPoints}</div>
           </div>
         </div>
       </header>
@@ -122,9 +122,9 @@ export default function Dashboard() {
             exit={{ opacity: 0, x: -20 }}
             className="space-y-4 relative z-10"
           >
-            <h3 className="tattoo-font text-4xl text-black">Pruebas Superadas</h3>
+            <h3 className="font-display text-3xl text-brand-red">Pruebas</h3>
             {gameState.completedSubThemes.length === 0 ? (
-                <div className="neo-border bg-white p-8 text-center text-black">
+                <div className="neo-border bg-white p-8 text-center text-brand-red rounded-2xl">
                     <p className="font-bold uppercase text-[10px] opacity-50 italic">Aún no has completado ninguna prueba.</p>
                 </div>
             ) : (
@@ -132,19 +132,19 @@ export default function Dashboard() {
                 {GAME_THEMES.flatMap(t => t.subThemes)
                     .filter(st => gameState.completedSubThemes.includes(st.id))
                     .map(st => (
-                  <div key={st.id} className="flex items-center gap-3 p-3 glass neo-border text-black">
-                    <div className="w-12 h-12 bg-white neo-border flex-shrink-0 overflow-hidden flex items-center justify-center">
+                  <div key={st.id} className="flex items-center gap-3 p-3 glass neo-border text-brand-red rounded-xl">
+                    <div className="w-12 h-12 bg-white rounded-lg flex-shrink-0 overflow-hidden flex items-center justify-center border-2 border-brand-red">
                       {photosMap[st.id] ? (
                         <img src={photosMap[st.id]} alt={st.title} className="w-full h-full object-cover" />
                       ) : (
-                        <span className="text-2xl">🔥</span>
+                        <span className="text-2xl">📸</span>
                       )}
                     </div>
                     <div className="flex-1">
-                      <div className="font-black text-sm uppercase">{st.title}</div>
-                      <div className="text-[10px] font-bold opacity-80 uppercase">+{st.points} Puntos • Foto Subida</div>
+                      <div className="font-bold text-sm uppercase">{st.title}</div>
+                      <div className="text-[10px] font-bold opacity-80 uppercase">+{st.points} Puntos</div>
                     </div>
-                    <CheckCircle2 className="text-black" size={20} />
+                    <CheckCircle2 className="text-brand-red" size={20} />
                   </div>
                 ))}
                 </div>
@@ -161,11 +161,11 @@ export default function Dashboard() {
             <div className="flex items-center space-x-3">
               <button 
                 onClick={() => setSelectedTheme(null)} 
-                className="bg-black text-white p-3 neo-border hover:scale-105 transition-transform"
+                className="bg-brand-red text-white p-3 neo-border hover:scale-105 transition-transform rounded-xl"
               >
                 <ChevronLeft size={20} />
               </button>
-              <h3 className="tattoo-font text-4xl text-black">{selectedTheme.title}</h3>
+              <h3 className="font-display text-4xl text-brand-red leading-tight">{selectedTheme.title}</h3>
             </div>
 
             <div className="grid grid-cols-1 gap-4">
@@ -177,22 +177,22 @@ export default function Dashboard() {
                     disabled={isCompleted}
                     onClick={() => setActiveSubTheme(st)}
                     className={cn(
-                      "neo-border p-4 text-left transition-all relative overflow-hidden group flex flex-col",
+                      "neo-border p-4 text-left transition-all relative overflow-hidden group flex flex-col rounded-2xl",
                       isCompleted 
-                        ? "bg-gray-400/50 opacity-60 text-black grayscale" 
-                        : "bg-white text-black hover:bg-brand-light-pink"
+                        ? "bg-gray-400/20 opacity-60 text-brand-red grayscale" 
+                        : "bg-white text-brand-red hover:bg-white/80"
                     )}
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <span className="font-black uppercase text-sm italic">{st.title}</span>
-                      <span className="bg-red-600 text-white px-3 py-1 text-[10px] font-black neo-border">
-                        {st.points} PTS
+                      <span className="font-bold uppercase text-sm">{st.title}</span>
+                      <span className="bg-brand-red text-white px-3 py-1 text-[10px] font-display rounded-lg">
+                        {st.points}
                       </span>
                     </div>
-                    <p className="text-[10px] font-bold uppercase opacity-70 leading-tight italic">{st.description}</p>
+                    <p className="text-[10px] font-bold uppercase opacity-70 leading-tight italic pr-8">{st.description}</p>
                     {isCompleted && (
                         <div className="absolute top-1/2 right-4 -translate-y-1/2">
-                             <CheckCircle2 className="text-black" />
+                             <CheckCircle2 className="text-brand-red" />
                         </div>
                     )}
                   </button>
@@ -208,9 +208,9 @@ export default function Dashboard() {
             exit={{ opacity: 0, scale: 1.1 }}
             className="py-10 relative z-10"
           >
-            <div className="bg-white neo-border p-4 flex flex-col items-center">
-                <div className="absolute top-0 right-4 bg-red-600 text-white px-4 py-1 font-black text-[10px] uppercase -mt-3 neo-border z-20">
-                  ¿Qué toca ahora?
+            <div className="bg-white/40 neo-border p-4 flex flex-col items-center rounded-[32px]">
+                <div className="absolute top-0 right-8 bg-brand-red text-white px-4 py-1 font-display text-sm uppercase -mt-4 neo-border z-20 rounded-lg">
+                  Gira!
                 </div>
                 <Roulette 
                   themes={availableThemes} 
@@ -228,21 +228,21 @@ export default function Dashboard() {
             <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="neo-border bg-white p-8 text-center space-y-6 my-8 relative z-10"
+                className="neo-border bg-white p-8 text-center space-y-6 my-8 relative z-10 rounded-3xl"
             >
-                <div className="bg-red-600 neo-border p-4 text-white">
+                <div className="bg-brand-red neo-border p-4 text-white rounded-2xl">
                     <Trophy className="mx-auto mb-2" size={48} />
-                    <h3 className="retro-title text-4xl">¡PREMIO FINAL!</h3>
+                    <h3 className="font-display text-4xl leading-none">¡PREMIO FINAL!</h3>
                 </div>
-                <p className="tattoo-font text-2xl text-black">Has completado los retos de San Isidro.</p>
-                <div className="bg-brand-light-pink neo-border p-6 text-black border-dashed">
-                    <p className="font-black text-2xl uppercase italic">Tu regalo te espera en la Pradera</p>
-                    <p className="text-[10px] font-bold uppercase opacity-80 mt-4 border-t-2 border-black pt-2">Enseña esta pantalla al organizador</p>
+                <p className="font-script text-3xl text-brand-red">Has completado los retos de San Isidro.</p>
+                <div className="bg-brand-pink/30 neo-border p-6 text-brand-red border-dashed rounded-2xl">
+                    <p className="font-display text-2xl uppercase">Tu regalo te espera en la Pradera</p>
+                    <p className="text-[10px] font-bold uppercase opacity-80 mt-4 border-t-2 border-brand-red pt-2 italic">Enseña esta pantalla al organizador</p>
                 </div>
                 <motion.div
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ repeat: Infinity, duration: 1 }}
-                    className="flex justify-center text-red-600"
+                    className="flex justify-center text-brand-red"
                 >
                     <PartyPopper size={48} />
                 </motion.div>
@@ -257,27 +257,26 @@ export default function Dashboard() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-brand-pink/95 flex flex-col p-6 overflow-y-auto"
+            className="fixed inset-0 z-50 bg-brand-pink flex flex-col p-6 overflow-y-auto"
           >
              <div className="w-full max-w-sm mx-auto space-y-8 py-10">
-                <header className="space-y-2">
-                    <h4 className="text-3xl font-display text-brand-red uppercase leading-none">{activeSubTheme.title}</h4>
-                    <p className="font-retro text-sm text-brand-cream">{activeSubTheme.description}</p>
+                <header className="space-y-2 text-center text-brand-red">
+                    <h4 className="text-4xl font-display leading-none">{activeSubTheme.title}</h4>
+                    <p className="font-bold text-sm uppercase">{activeSubTheme.description}</p>
                 </header>
 
-                <div className="roadmap-border bg-white p-6 space-y-6">
+                <div className="neo-border bg-white p-6 space-y-6 rounded-3xl">
                     {activeSubTheme.type === 'trivia' ? (
                         <div className="space-y-4">
-                            <p className="font-display text-brand-red text-center">Trivia Visual: ¿Es Esteban?</p>
-                            {/* Trivia placeholder since we don't have the assets, but I'll make a generic structure */}
+                            <p className="font-display text-brand-red text-center text-xl">¿Es Esteban?</p>
                             <div className="grid grid-cols-2 gap-2">
                                 {[1, 2, 3].map(i => (
                                     <button 
                                         key={i}
                                         onClick={() => handleSubThemeComplete(activeSubTheme, 'trivia-url')}
-                                        className="roadmap-border aspect-square bg-gray-200 flex items-center justify-center font-retro text-xs"
+                                        className="neo-border aspect-square bg-brand-pink/10 flex items-center justify-center font-bold text-xs uppercase text-brand-red rounded-xl hover:bg-brand-pink/30"
                                     >
-                                        OMBLIGO {i}
+                                        OPCIÓN {i}
                                     </button>
                                 ))}
                             </div>
@@ -292,9 +291,9 @@ export default function Dashboard() {
 
                 <button 
                   onClick={() => setActiveSubTheme(null)}
-                  className="w-full font-retro text-brand-cream uppercase text-sm border-b border-brand-cream pb-1"
+                  className="w-full font-bold text-brand-red uppercase text-sm border-b-2 border-brand-red pb-1"
                 >
-                    Cancelar y volver
+                    Volver
                 </button>
              </div>
           </motion.div>
@@ -302,14 +301,14 @@ export default function Dashboard() {
       </AnimatePresence>
 
       {/* Bottom Nav */}
-      <nav className="fixed bottom-0 left-0 right-0 p-4 bg-brand-cream roadmap-border border-x-0 border-b-0 flex justify-around">
-          <button onClick={() => {setSelectedTheme(null); setShowProgress(false)}} className="flex flex-col items-center">
-             <RotateCcw className="text-brand-red" size={24} />
-             <span className="text-[10px] font-retro uppercase">Ruleta</span>
+      <nav className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-md neo-border border-x-0 border-b-0 flex justify-around rounded-t-[32px] z-40">
+          <button onClick={() => {setSelectedTheme(null); setShowProgress(false)}} className="flex flex-col items-center group">
+             <RotateCcw className={cn("text-brand-red transition-transform group-active:rotate-[-45deg]", !showProgress && !selectedTheme && "scale-110")} size={24} />
+             <span className={cn("text-[10px] font-bold uppercase mt-1", !showProgress && !selectedTheme ? "opacity-100" : "opacity-40")}>Ruleta</span>
           </button>
-          <button onClick={() => setShowProgress(true)} className="flex flex-col items-center">
-             <ImageIcon className="text-brand-red" size={24} />
-             <span className="text-[10px] font-retro uppercase">Progreso</span>
+          <button onClick={() => setShowProgress(true)} className="flex flex-col items-center group">
+             <ImageIcon className={cn("text-brand-red transition-transform group-active:scale-125", showProgress && "scale-110")} size={24} />
+             <span className={cn("text-[10px] font-bold uppercase mt-1", showProgress ? "opacity-100" : "opacity-40")}>Progreso</span>
           </button>
       </nav>
     </div>
